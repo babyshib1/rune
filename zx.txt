@@ -1,0 +1,325 @@
+为方便理解，项目下的每一个id对应的数据称为通证
+
+
+1.创建项目
+方法原型：
+done deployMp(string memory p, string memory tick, uint256 max, uint256 lim, uint256 lmp)
+
+	参数名称	参数类型	参数说明	示例
+
+	p	string	项目类型 	erc-20
+	tick	string	项目名称 	doge
+	max	uint256	最大数量	10000000000000
+	lim 	uint256	每份数量	1000
+	lmp	uint256	每份价格	100000000000 wei   ether
+
+
+
+done 2.参与mint
+
+此方法需要消息体携带主链币一起发送，发送数量为lmp 需要先调用查询接口查询到项目lmp
+方法原型：
+mintMp(uint256 pid, address to)
+
+	参数名称	参数类型	参数说明	示例
+
+	pid	uint256	项目编号 	1
+	to	address	接收地址 	0x12345......abcd
+
+3.批量mint
+此方法需要消息体携带主链币一起发送，发送数量为lmp * amount
+方法原型：
+done mintMpBatch(uint256 pid, address to, uint256 amount)
+
+	参数名称	参数类型	参数说明	示例
+
+	pid	uint256	项目编号 	1
+	to	address	接收地址 	0x12345......abcd
+	amount	uint256	mint个数 3 			此参数代表mint张数，每一张都是lim
+
+4.挂单卖出
+方法原型：
+sell(uint256 pid, uint256 id, uint256 price)
+
+	参数名称	参数类型	参数说明	示例
+
+	pid	uint256	项目编号 	1
+	id	uint256	通证编号 	3
+	price	uint256	挂单价格 	1000000000
+
+4.取消挂单
+方法原型：
+cancelSell(uint256 pid, uint256 id)	
+
+	参数名称	参数类型	参数说明	示例
+
+	pid	uint256	项目编号 	1
+	id	uint256	通证编号 	3
+
+5.购买通证
+此方法需要消息体携带主链币一起发送，发送数量为通证设置的卖出价格
+方法原型：
+buy(uint256 pid, uint256 id, address to)
+
+
+	参数名称	参数类型	参数说明	示例
+
+	pid	uint256	项目编号 	1
+	id	uint256	通证编号 	3
+	to	address	接收地址 	0x12345......abcd
+
+
+---------------- 以下是查询
+1.根据项目编号获取项目
+方法原型：
+getProject(uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	项目编号 	1
+
+返回值：
+
+	名称	类型	说明	示例
+
+	无	address	项目地址 	0x12345......abcd
+
+
+2.根据编号获取项目原始数据
+方法原型：
+getSrc(uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	项目编号 	1
+
+返回值：
+
+	名称	类型	说明	示例
+
+	无	bytes	原始数据 	0x12345......abcd(16进制，解码后：{"key":"dsaoij","value":"sadfa"})
+
+
+3.根据项目地址获取编号
+方法原型：
+getIndex(address) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	address	项目地址 	0x12345......abcd
+
+返回值：
+
+	名称	类型	说明	示例
+
+	无	uint256	项目编号 	1
+
+
+4.查询是否是白名单
+方法原型：
+whiteList(address) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	address	用户地址 	0x12345......abcd
+
+返回值：
+
+	名称	类型	说明		示例
+
+	无	bool	是否白名单 	true
+
+
+5.获取项目总数量
+方法原型：
+mpCount() 
+
+无参数
+
+返回值：
+
+	名称	类型	说明		示例
+
+	mpCount	uint256	子项目总数量 	108
+
+
+
+6.根据排名获取项目地址(交易笔数排行版)
+方法原型：
+rank(uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	排名 	1
+
+返回值：
+
+	名称	类型	说明	示例
+
+	无	address	项目地址 	0x12345......abcd
+
+
+7.根据项目地址获取该项目的排名(交易笔数排行版)
+方法原型：
+getRank(address) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	address	项目地址 	0x12345......abcd
+
+返回值：
+
+	名称	类型	说明	示例
+
+	无	uint256	排名  	1
+
+8.手续费的除数
+方法原型：
+baseFee() 
+无参数
+
+返回值：
+
+	名称	类型	说明		示例
+
+	baseFee	uint256	手续费的除数	10000
+
+
+9.mint手续费
+方法原型：
+mintFee() 
+无参数
+
+返回值：
+
+	名称	类型	说明	示例
+
+	mintFee	uint256	手续费	100（结合baseFee使用，这里手续费的比例就是100/10000 = 1%）
+
+
+10.卖出手续费
+方法原型：
+sellFee() 
+无参数
+
+返回值：
+
+	名称	类型	说明	示例
+
+	sellFee	uint256	手续费	100（结合baseFee使用，这里手续费的比例就是100/10000 = 1%）
+
+------------子项目文档------------
+说明，以下均为查询方法，需要用控制器的getProject方法获取子项目地址，然后用子项目的abi加载合约然后进行查询
+
+--------无参查询属性值--------
+p() 		返回类型 string 
+tick() 		返回类型 string 
+lmp() 		返回类型 uint256 
+max() 		返回类型 uint256 
+lim() 		返回类型 uint256 
+
+creator() 	返回类型 address 创建者
+src() 		返回类型 bytes 合约原始数据 16进制可解码成json格式字符串
+maxMintCount() 	返回类型 uint256 最大mint张数 
+mintedCount() 	返回类型 uint256 已经mint张数 
+
+---------有参数查询--------
+1.根据通证编号获取该通证原始数据
+方法原型：
+datas(uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	通证编号 	1
+
+返回值：
+
+	名称	类型	说明		示例
+
+	无	bytes	通证原始数据  	0x12345......abcd（16进制可解码成json格式字符串）
+
+2.根据通证编号获取持有人
+方法原型：
+datas(uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	通证编号 	1
+
+返回值：
+
+	名称	类型	说明		示例
+
+	无	address	通证持有人  	0x12345......abcd
+
+3.根据通证编号查询是否登记卖出
+方法原型：
+rSell(uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	通证编号 	1
+
+返回值：
+
+	名称	类型	说明		示例
+
+	无	bool	是否卖出  	false
+
+4.根据通证编号查询登记卖出价格（rSell 为false时该值无效）
+方法原型：
+rPrice(uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	通证编号 	1
+
+返回值：
+
+	名称	类型	说明		示例
+
+	无	uint256	登记卖出价格  	1000000000
+
+
+
+5.根据通证编号查询登记卖出价格（rSell 为false时该值无效）
+方法原型：
+transferRecords(uint256，uint256) 
+
+	参数名称	参数类型	参数说明	示例
+
+	无	uint256	通证编号 	1
+	无	uint256	记录索引 	1
+
+返回值：TransferRecord 结构体TransferRecord {address from;address to;uint8 tp;}
+
+	名称	类型		说明	
+
+	无	TransferRecord	转账记录  
+
+
+
+
+done 6.查询基本信息
+方法原型：
+info() 
+无参数
+
+返回值： 子合约  的 info  地址?
+
+	名称		类型	说明		示例
+
+	_p		string	
+	_tick		string	
+	_deployTime	uint256	
+	_maxMintCount	uint256	
+	_mintedCount	uint256	
+	_holders		uint256	
+	_transferCount	uint256	
+
+
+
+进度就是_mintedCount / _maxMintCount
+
+
+

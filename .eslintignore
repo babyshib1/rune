@@ -1,0 +1,5 @@
+# eslint忽略目录
+src/assets
+src/utils/TCaptcha.js
+src/utils/idCard.js
+static/js/TCaptcha.js
