@@ -31,22 +31,31 @@
     <div class="table mw">
       <div class="tableList">
         <div class="tableLeft">
-          <p>RUNE</p>
-          <p>SUPPLI</p>
-          <p>PROGRESS</p>
-          <p>HOLDERS</p>
-          <p>CREATED AT</p>
+          <p>Rune</p>
+          <p class="text-center">Suppli</p>
+          <p class="text-center">Progress </p>
+          <p class="text-center">Holders</p>
+          <p>
+            Deploy Time
+          </p>
           <p></p>
 
           <p style="width: 20px; flex: none; height: 1px"></p>
         </div>
-        <div class="tableFlex" v-for="(item, index) in list" :key="index">
+        <div class="tableFlex" v-for="(item, index) in list" :key="index"
+        @click="() => $router.push({ path: '/RuneView' })"
+        >
           <div class="tableRight">
-            <div>
+            <div class="p1">
+              {{ item.type }}
               <span>{{ item.name }}</span>
+              <img
+                src="@/assets/projects/gold.png"
+                style="width: 20px; height: 20px"
+              />
             </div>
             <div>
-              <span>{{ item.supply }}</span>
+              <div class="text-center">{{ item.supply }}</div>
             </div>
 
             <div class="Progress">
@@ -57,15 +66,13 @@
             </div>
 
             <div>
-              <span>{{ item.holders }}</span>
+              <div class="text-center">{{ item.holders }}</div>
             </div>
             <div>
               <span>{{ item.created }}</span>
             </div>
             <div>
-              <button class="mintBtn"
-                @click="() => $router.push({ path: '/RuneView' })"
-              >View</button>
+              <button class="mintBtn" @click.stop="">Mint</button>
             </div>
           </div>
         </div>
@@ -81,10 +88,11 @@ import { ref } from "vue"
 
 const list = ref([
   {
-    name: "RUNE",
+    type: "BSCR",
+    name: "BSC-20",
     supply: "100,000,000",
-    progress: "100%",
-    holders: "100,000,000",
+    progress: "0%",
+    holders: "0",
     created: "2021-09-09 12:00:00"
   }
 ])
@@ -337,7 +345,7 @@ const searchClick = () => {
         .Progress {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items:center;
           span {
             display: block;
             width: 80%;
@@ -408,12 +416,16 @@ const searchClick = () => {
   font-size: 0.32rem;
   font-weight: 600;
   text-align: center;
-  padding: 0 0.21333rem;
+  padding: 0 20px;
   height: 0.8rem;
   line-height: 0.8rem;
-  width: 3.78667rem;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   cursor: pointer;
+}
+/* 居中 */
+.text-center {
+  width: 100%;
+  text-align: center;
 }
 </style>
