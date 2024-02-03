@@ -63,7 +63,9 @@
               <span>{{ item.created }}</span>
             </div>
             <div>
-              <button class="mintBtn">Mint</button>
+              <button class="mintBtn"
+                @click="() => $router.push({ path: '/RuneView' })"
+              >View</button>
             </div>
           </div>
         </div>

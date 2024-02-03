@@ -53,6 +53,16 @@ const route = [
 		}
 	},
 	{
+		path: '/RuneView',
+		name: 'RuneView',
+		component: () => import('@/views/bscsIndex/RuneView.vue'),
+		meta: {
+			title: 'Runes',
+			auth: true,
+			keepAlive: false
+		}
+	},
+	{
 		path: '/Runes',
 		name: 'Runes',
 		component: () => import('@/views/bscsIndex/Runes.vue'),
