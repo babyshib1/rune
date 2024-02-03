@@ -5,7 +5,7 @@ import {useRoute, useRouter} from "vue-router"
 import {useStore} from "vuex"
 
 export const ajax = axios.create({
-  baseURL: "https://bscs.web3socket.com", responseType: 'json'
+  baseURL: "https://api.bscs.market", responseType: 'json'
 })
 ajax.interceptors.request.use(function (config) {
   let adr = String(window.localStorage.getItem("adr") || "").toLowerCase()
