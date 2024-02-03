@@ -9,7 +9,7 @@
         <router-link active-class="active-menu" :to="{ path: '/bscsMarket' }">Home</router-link>
         <router-link active-class="active-menu" :to="{ path: '/Tokens' }">Tokens</router-link>
         <router-link active-class="active-menu" :to="{ path: '/Marketplace' }">Marketplace</router-link>
-        <router-link active-class="active-menu" :to="{ path: '/Runes' }">Runes</router-link>
+        <!-- <router-link active-class="active-menu" :to="{ path: '/Runes' }">Runes</router-link> -->
 
         <!--                <router-link active-class="active-menu"-->
         <!--                             :to="{ path: '/Deploymint' }">Deploy-->

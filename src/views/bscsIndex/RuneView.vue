@@ -3,52 +3,44 @@
   <div class="etchCon">
     <page-header />
     <div class="rune-view">
-      <div class="rune-view__header">
-        <div class="rune-view__header__title">
-          <h1>{{ rune.name }}</h1>
-        </div>
-        <div class="rune-view__header__image">
-          <img :src="rune.image" :alt="rune.name" />
-        </div>
-      </div>
-      <div class="rune-view__content">
-        <div class="rune-view__content__description">
-          <p>{{ rune.description }}</p>
-        </div>
-        <div class="rune-view__content__stats">
-          <div class="rune-view__content__stats__stat">
-            <div class="rune-view__content__stats__stat__name">
-              <h3>Attack</h3>
+      <h2 class="rune-title">RUNE</h2>
+      <div class="rune-detail"></div>
+      <div class="rune-detail-info">
+        <div class="rune-detail-info-left">
+          <h3 class="rune-detail-info-title">BSCR</h3>
+          <div class="rune-detail-info-desc">
+            <div class="rune-detail-info-desc-item">
+              <span class="rune-detail-info-desc-item-title">Attack</span>
+              <span class="rune-detail-info-desc-item-value">10</span>
             </div>
-            <div class="rune-view__content__stats__stat__value">
-              <p>{{ rune.stats.attack }}</p>
+            <div class="rune-detail-info-desc-item">
+              <span class="rune-detail-info-desc-item-title">Attack</span>
+              <span class="rune-detail-info-desc-item-value">10</span>
             </div>
-          </div>
-          <div class="rune-view__content__stats__stat">
-            <div class="rune-view__content__stats__stat__name">
-              <h3>Defense</h3>
-            </div>
-            <div class="rune-view__content__stats__stat__value">
-              <p>{{ rune.stats.defense }}</p>
-            </div>
-          </div>
-          <div class="rune-view__content__stats__stat">
-            <div class="rune-view__content__stats__stat__name">
-              <h3>Magic</h3>
-            </div>
-            <div class="rune-view__content__stats__stat__value">
-              <p>{{ rune.stats.magic }}</p>
-            </div>
-          </div>
-          <div class="rune-view__content__stats__stat">
-            <div class="rune-view__content__stats__stat__name">
-              <h3>Difficulty</h3>
-            </div>
-            <div class="rune-view__content__stats__stat__value">
-              <p>{{ rune.stats.difficulty }}</p>
+            <div class="rune-detail-info-desc-item">
+              <span class="rune-detail-info-desc-item-title">Attack</span>
+              <span class="rune-detail-info-desc-item-value">10</span>
             </div>
           </div>
         </div>
+        <div class="rune-detail-info-right">
+          <h3 class="rune-detail-info-title">BSCR</h3>
+          <div class="rune-detail-info-desc">
+            <div class="rune-detail-info-desc-item">
+              <span class="rune-detail-info-desc-item-title">Attack</span>
+              <span class="rune-detail-info-desc-item-value">10</span>
+            </div>
+            <div class="rune-detail-info-desc-item">
+              <span class="rune-detail-info-desc-item-title">Attack</span>
+              <span class="rune-detail-info-desc-item-value">10</span>
+            </div>
+            <div class="rune-detail-info-desc-item">
+              <span class="rune-detail-info-desc-item-title">Attack</span>
+              <span class="rune-detail-info-desc-item-value">10</span>
+            </div>
+            </div>
+        </div>
+       
       </div>
     </div>
   </div>
@@ -77,60 +69,68 @@ const rune = ref({
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 30px;
-  &__header {
+  .rune-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+  }
+  .rune-detail {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    &__title {
-      h1 {
-        font-size: 24px;
-        font-weight: 700;
-        color: #fff;
-      }
-    }
-    &__image {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
+    padding: 20px;
+    background-color: #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   }
-  &__content {
-    &__description {
-      margin-bottom: 30px;
-      p {
+  .rune-detail-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  .rune-detail-info-left {
+    width: 49%;
+    height: 300px;
+    background-color: #000;
+    border-radius: 10px;
+    /*  */
+  }
+  .rune-detail-info-right {
+    width: 49%;
+    height: 300px;
+    background-color: #000;
+    border-radius: 10px;
+  }
+  .rune-detail-info-right,.rune-detail-info-left{
+    padding: 26px;
+    .rune-detail-info-title{
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #fff;
+      text-align: center;
+    }
+    .rune-detail-info-desc {
+      padding: 20px;
+      .rune-detail-info-desc-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
         font-size: 16px;
-        font-weight: 400;
-        color: #fff;
-      }
-    }
-    &__stats {
-      display: flex;
-      justify-content: space-between;
-      &__stat {
-        width: 23%;
-        &__name {
-          h3 {
-            font-size: 16px;
-            font-weight: 400;
-            color: #fff;
-          }
+        .rune-detail-info-desc-item-title {
+          color: #fff;
         }
-        &__value {
-          p {
-            font-size: 16px;
-            font-weight: 400;
-            color: #fff;
-          }
+        .rune-detail-info-desc-item-value {
+          color: #fff;
         }
       }
     }
+
   }
 }
 </style>
