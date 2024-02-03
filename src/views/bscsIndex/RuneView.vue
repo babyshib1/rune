@@ -8,7 +8,7 @@
         <div class="rune-detail-info-left">
           <h3 class="rune-detail-info-title">BSCR POOL</h3>
           <div class="rune-detail-info-introduce">
-            介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
+              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
           </div>
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
@@ -71,7 +71,7 @@
         <div class="rune-detail-info-left">
           <h3 class="rune-detail-info-title">BSCS POOL</h3>
           <div class="rune-detail-info-introduce">
-            介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
           </div>
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">

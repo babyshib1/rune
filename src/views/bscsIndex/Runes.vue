@@ -26,6 +26,7 @@
             </svg>
           </button>
         </div>
+        <div class="sub-title">bsc-20 rune platform</div>
       </div>
     </div>
     <div class="table mw">
@@ -173,6 +174,11 @@ const searchClick = () => {
         background-color: #fff;
         content: "";
       }
+    }
+    .sub-title{
+      font-size: 14px;
+      color: #fff;
+      padding:  0;
     }
   }
 
