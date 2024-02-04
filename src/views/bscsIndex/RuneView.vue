@@ -48,18 +48,23 @@
           </div>
           <div class="rune-console">
             <div class="rune-console-item">
-              <span class="rune-console-item-title">Stake:0</span>
+              <span class="rune-console-item-title">Stake:{{ stakeValue }}
+                <div class="slider-box">
+                  <el-slider class="class-slider" v-model="rune.stats.attack" :min="0" :max="100" />
+                </div>
+
+              </span>
               <span class="rune-console-item-button">Stake</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Claim:0</div>
+                <div>Claim:{{ claimValue }}</div>
               </div>
               <span class="rune-console-item-button">Claim</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Redeem:0</div>
+                <div>Redeem:{{ redeemValue }}</div>
               </div>
               <span class="rune-console-item-button">Redeem</span>
             </div>
@@ -110,18 +115,18 @@
           </div>
           <div class="rune-console">
             <div class="rune-console-item">
-              <span class="rune-console-item-title">Stake:0</span>
+              <span class="rune-console-item-title">Stake:{{ BSCS_StakeValue }}</span>
               <span class="rune-console-item-button">Stake</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Claim:0</div>
+                <div>Claim:{{ BSCS_ClaimValue }}</div>
               </div>
               <span class="rune-console-item-button">Claim</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Redeem:0</div>
+                <div>Redeem:{{ BSCS_RedeemValue }}</div>
               </div>
               <span class="rune-console-item-button">Redeem</span>
             </div>
@@ -129,6 +134,17 @@
         </div>
       </div>
     </div>
+    <el-dialog width="30%" append-to-body class="connect_dialog" v-model="connectDialog">
+      <div class="dialog-box">
+        <span>
+          Stake:{{ stakeValue }}
+        </span>
+        <div class="slider-box"> <el-slider v-model="stakeValue" :min="0" :max="100" /></div>
+        <div class="btn">
+          Stake
+        </div>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts" setup>
@@ -145,6 +161,13 @@ const rune = ref({
     difficulty: 10
   }
 })
+const connectDialog = ref(true)
+const stakeValue = ref(0)
+const claimValue = ref(0)
+const redeemValue = ref(0)
+const BSCS_StakeValue = ref(0)
+const BSCS_ClaimValue = ref(0)
+const BSCS_RedeemValue = ref(0)
 </script>
 <style lang="scss" scoped>
 .etchCon {
@@ -279,6 +302,16 @@ const rune = ref({
       .rune-console-item-title {
         font-size: 14px;
         color: #fff;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .slider-box {
+          width: 50%;
+          margin-left: 15px;
+
+          .class-slider {}
+        }
 
         .rune-console-item-subtitle {
           font-size: 12px;
@@ -296,6 +329,30 @@ const rune = ref({
         /*  */
       }
     }
+  }
+}
+
+.dialog-box {
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+
+  .slider-box {
+    width: 50%;
+    margin-left: 15px;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 20px;
+    background-color: #ffc107;
+    padding: 10px 20px;
+    border-radius: 5px;
   }
 }
 </style>

@@ -1,24 +1,23 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <keep-alive v-if="route.meta.keepAlive">
-      <Component :is="Component"/>
+      <Component :is="Component" />
     </keep-alive>
-    <Component v-else :is="Component"/>
+    <Component v-else :is="Component" />
     <!--    <transition :name="transitionName">-->
     <!--      -->
     <!--    </transition>-->
-    <page-footer/>
+    <page-footer />
   </router-view>
-
 </template>
 
 <script setup>
-import {computed, getCurrentInstance} from 'vue'
-import {useStore} from 'vuex'
+import { computed, getCurrentInstance } from 'vue'
+import { useStore } from 'vuex'
 import defaultSetting from './settings'
-import {ElLoading} from 'element-plus'
+import { ElLoading } from 'element-plus'
 
-import {getWalletObj, getWalletKey} from "@/hooks/api"
+import { getWalletObj, getWalletKey } from "@/hooks/api"
 
 const that = getCurrentInstance().proxy
 const store = useStore()
@@ -50,7 +49,7 @@ setInterval(() => {
       })
     }
     let key = getWalletKey()
-    getWalletObj(key).request({method: "eth_requestAccounts"}).then(accounts => {
+    getWalletObj(key).request({ method: "eth_requestAccounts" }).then(accounts => {
       store.commit('wallet/setAddress', {
         address: accounts?.[0],
         key: key
@@ -118,4 +117,11 @@ body {
 //::-webkit-scrollbar-thumb:window-inactive {
 //  background: #999;
 //}
+.el-slider__bar {
+  background: #ffc107 !important
+}
+
+.el-slider__button {
+  border-color: #ffc107 !important;
+}
 </style>

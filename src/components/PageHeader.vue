@@ -16,10 +16,9 @@
         <!--                </router-link>-->
       </div>
       <div>
-        <div class="etchRight" v-show="!address" @click="connectDialog=true">Connect<span>Wallet</span></div>
+        <div class="etchRight" v-show="!address" @click="connectDialog = true">Connect<span>Wallet</span></div>
 
-        <el-dropdown popper-class="login_drop" v-show="address" trigger="click"
-                     @command="doneCommand">
+        <el-dropdown popper-class="login_drop" v-show="address" trigger="click" @command="doneCommand">
           <div class="user_address">
             {{ $Utils.formatAddress(address) }}
             <span class="tag-read" ref="copyEl" :data-clipboard-text="address" @click="Copy"></span>
@@ -34,36 +33,47 @@
           </template>
         </el-dropdown>
       </div>
-      <el-badge :hidden="tickLen===0" :value="tickLen" type="warning">
-        <cart-icon @click="showDialog"></cart-icon>
-      </el-badge>
+
+      <div>
+        <el-badge :hidden="tickLen === 0" :value="tickLen" type="warning">
+          <cart-icon @click="showDialog"></cart-icon>
+        </el-badge>
+      </div>
+
+      <div class="nav-icon" @click="showNavDialog">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7d558"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 9.5H3M21 4.5H3M21 14.5H3M21 19.5H3" />
+        </svg>
+      </div>
     </div>
+
 
     <el-drawer append-to-body class="card_dialog" v-model="cardDialog" :show-close="false" direction="rtl" size="500">
       <div class="body">
         <div class="header">
           <div class="left">
             <div class="cart_num">Cart({{ tickLen }})</div>
-            <div class="cart_clear" v-if="tickLen>0" @click="clearTicks">Clear All</div>
+            <div class="cart_clear" v-if="tickLen > 0" @click="clearTicks">Clear All</div>
           </div>
-          <el-icon class="icon" @click="cardDialog=false">
-            <ElClose/>
+          <el-icon class="icon" @click="cardDialog = false">
+            <ElClose />
           </el-icon>
         </div>
-        <div v-if="tickLen===0" class="empty">
+        <div v-if="tickLen === 0" class="empty">
           <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none">
             <path fill="#ffc107"
-                  d="M58 19.2H22c-2.2 0-4 1.8-4 4v36c0 2.2 1.8 4 4 4h20.72c-.96-1.92-1.52-4.12-1.52-6.4 0-7.96 6.44-14.4 14.4-14.4 2.32 0 4.48.52 6.4 1.52V23.2c0-2.2-1.8-4-4-4ZM43.4 37.28l-8.92 10.88-1.68-1.64v-.04.04l-1.68 1.64v-3.28l10.4-6.68L30 43.8 27 41v-.36l16.4-3.76v.4ZM54.8 30H25.2c-.68 0-1.2-.52-1.2-1.2 0-.68.52-1.2 1.2-1.2h29.6c.68 0 1.2.52 1.2 1.2 0 .68-.52 1.2-1.2 1.2ZM8 70c0 1.06 3.371 2.078 9.373 2.828C23.373 73.578 31.513 74 40 74c8.487 0 16.626-.421 22.627-1.172C68.63 72.078 72 71.061 72 70c0-1.06-3.371-2.078-9.373-2.828C56.627 66.422 48.487 66 40 66c-8.487 0-16.626.421-22.627 1.172C11.37 67.922 8 68.939 8 70Z"
-                  opacity="0.2"></path>
+              d="M58 19.2H22c-2.2 0-4 1.8-4 4v36c0 2.2 1.8 4 4 4h20.72c-.96-1.92-1.52-4.12-1.52-6.4 0-7.96 6.44-14.4 14.4-14.4 2.32 0 4.48.52 6.4 1.52V23.2c0-2.2-1.8-4-4-4ZM43.4 37.28l-8.92 10.88-1.68-1.64v-.04.04l-1.68 1.64v-3.28l10.4-6.68L30 43.8 27 41v-.36l16.4-3.76v.4ZM54.8 30H25.2c-.68 0-1.2-.52-1.2-1.2 0-.68.52-1.2 1.2-1.2h29.6c.68 0 1.2.52 1.2 1.2 0 .68-.52 1.2-1.2 1.2ZM8 70c0 1.06 3.371 2.078 9.373 2.828C23.373 73.578 31.513 74 40 74c8.487 0 16.626-.421 22.627-1.172C68.63 72.078 72 71.061 72 70c0-1.06-3.371-2.078-9.373-2.828C56.627 66.422 48.487 66 40 66c-8.487 0-16.626.421-22.627 1.172C11.37 67.922 8 68.939 8 70Z"
+              opacity="0.2"></path>
             <path fill="#ffc107"
-                  d="M69.12 59.84c0 .68.52 1.2 1.2 1.2.68 0 1.2-.52 1.2-1.2 0-.68-.52-1.2-1.2-1.2-.68 0-1.2.56-1.2 1.2ZM72.4 65c-1.52.4-1.84.72-2.2 2.2-.4-1.52-.72-1.84-2.2-2.2 1.48-.4 1.84-.72 2.2-2.2.36 1.48.68 1.84 2.2 2.2ZM12.6 16.04c-1.96.52-2.36.92-2.88 2.88-.52-1.96-.92-2.36-2.88-2.88 1.96-.52 2.36-.96 2.88-2.88.48 1.96.92 2.36 2.88 2.88Zm58.4-.08c-1.2.32-1.44.56-1.76 1.76-.32-1.2-.56-1.44-1.76-1.76 1.2-.32 1.44-.56 1.76-1.76.28 1.2.56 1.44 1.76 1.76ZM70.16 11c-3.12.8-3.76 1.48-4.6 4.6-.8-3.12-1.48-3.76-4.6-4.6 3.12-.8 3.76-1.48 4.6-4.6.8 3.08 1.48 3.76 4.6 4.6ZM55.6 68.4c-6.4 0-11.6-5.2-11.6-11.6 0-6.4 5.2-11.6 11.6-11.6 6.4 0 11.6 5.2 11.6 11.6 0 6.4-5.2 11.6-11.6 11.6Zm0-20.8c-5.08 0-9.2 4.12-9.2 9.2 0 5.08 4.12 9.2 9.2 9.2 5.08 0 9.2-4.12 9.2-9.2 0-5.08-4.12-9.2-9.2-9.2Z"
-                  opacity="0.5"></path>
+              d="M69.12 59.84c0 .68.52 1.2 1.2 1.2.68 0 1.2-.52 1.2-1.2 0-.68-.52-1.2-1.2-1.2-.68 0-1.2.56-1.2 1.2ZM72.4 65c-1.52.4-1.84.72-2.2 2.2-.4-1.52-.72-1.84-2.2-2.2 1.48-.4 1.84-.72 2.2-2.2.36 1.48.68 1.84 2.2 2.2ZM12.6 16.04c-1.96.52-2.36.92-2.88 2.88-.52-1.96-.92-2.36-2.88-2.88 1.96-.52 2.36-.96 2.88-2.88.48 1.96.92 2.36 2.88 2.88Zm58.4-.08c-1.2.32-1.44.56-1.76 1.76-.32-1.2-.56-1.44-1.76-1.76 1.2-.32 1.44-.56 1.76-1.76.28 1.2.56 1.44 1.76 1.76ZM70.16 11c-3.12.8-3.76 1.48-4.6 4.6-.8-3.12-1.48-3.76-4.6-4.6 3.12-.8 3.76-1.48 4.6-4.6.8 3.08 1.48 3.76 4.6 4.6ZM55.6 68.4c-6.4 0-11.6-5.2-11.6-11.6 0-6.4 5.2-11.6 11.6-11.6 6.4 0 11.6 5.2 11.6 11.6 0 6.4-5.2 11.6-11.6 11.6Zm0-20.8c-5.08 0-9.2 4.12-9.2 9.2 0 5.08 4.12 9.2 9.2 9.2 5.08 0 9.2-4.12 9.2-9.2 0-5.08-4.12-9.2-9.2-9.2Z"
+              opacity="0.5"></path>
             <path fill="#ffc107"
-                  d="M61.2 58h-5.6c-.68 0-1.2-.52-1.2-1.2v-5.6c0-.68.52-1.2 1.2-1.2.68 0 1.2.52 1.2 1.2v4.4h4.4c.68 0 1.2.52 1.2 1.2 0 .68-.52 1.2-1.2 1.2Z"
-                  opacity="0.5"></path>
+              d="M61.2 58h-5.6c-.68 0-1.2-.52-1.2-1.2v-5.6c0-.68.52-1.2 1.2-1.2.68 0 1.2.52 1.2 1.2v4.4h4.4c.68 0 1.2.52 1.2 1.2 0 .68-.52 1.2-1.2 1.2Z"
+              opacity="0.5"></path>
             <path fill="#ffc107"
-                  d="M41.4 68.4H22c-5.08 0-9.2-4.12-9.2-9.2v-36c0-5.08 4.12-9.2 9.2-9.2h36c5.08 0 9.2 4.12 9.2 9.2v19.4c0 .68-.52 1.2-1.2 1.2-.68 0-1.2-.52-1.2-1.2V23.2c0-3.76-3.04-6.8-6.8-6.8H22c-3.76 0-6.8 3.04-6.8 6.8v36c0 3.76 3.04 6.8 6.8 6.8h19.4c.68 0 1.2.52 1.2 1.2 0 .68-.52 1.2-1.2 1.2Z"
-                  opacity="0.5"></path>
+              d="M41.4 68.4H22c-5.08 0-9.2-4.12-9.2-9.2v-36c0-5.08 4.12-9.2 9.2-9.2h36c5.08 0 9.2 4.12 9.2 9.2v19.4c0 .68-.52 1.2-1.2 1.2-.68 0-1.2-.52-1.2-1.2V23.2c0-3.76-3.04-6.8-6.8-6.8H22c-3.76 0-6.8 3.04-6.8 6.8v36c0 3.76 3.04 6.8 6.8 6.8h19.4c.68 0 1.2.52 1.2 1.2 0 .68-.52 1.2-1.2 1.2Z"
+              opacity="0.5"></path>
           </svg>
           <p class="txt">No items added to cart</p>
           <el-button class="btn" @click="doneCommand(4)" round>Explore Collections</el-button>
@@ -76,7 +86,7 @@
                   <div class="tick_item">
                     <div class="tick_icon">
                       <el-icon class="close" @click="delTick(scope.row.order_id)">
-                        <ElClose/>
+                        <ElClose />
                       </el-icon>
                     </div>
                     <div class="tick_txt">
@@ -89,7 +99,7 @@
               <el-table-column align="center" prop="amount" width="100" label="Quantity"></el-table-column>
               <el-table-column label="Value" align="right" width="120">
                 <template #default="scope">
-                  <div v-if="scope.row.status==='onSell'">
+                  <div v-if="scope.row.status === 'onSell'">
                     <span>{{ $Utils.rpZero(scope.row.price || "0") }} BNB</span>
                   </div>
                   <div v-else style="color: red">Unavailable</div>
@@ -178,32 +188,48 @@
         </el-col>
       </el-row>
     </el-dialog>
+    <el-drawer append-to-body class="card_dialog" v-model="navDialog" :show-close="false" direction="rtl">
+      <div class="body">
+        <div class="navDialog-box">
+          <router-link to="/bscsMarket">Home</router-link>
+          <router-link to="/Tokens">Tokens</router-link>
+          <router-link to="/Marketplace">Marketplace</router-link>
+          <!-- <router-link to="/Runes">Runes</router-link> -->
+          <!-- <router-link to="/Deploymint">Deploy</router-link> -->
+        </div>
+      </div>
+    </el-drawer>
   </div>
 </template>
 <script setup>
-import {computed, getCurrentInstance, ref, toRefs, watch} from 'vue'
-import {useStore} from 'vuex'
-import {ElLoading, ElMessage, ElMessageBox} from 'element-plus'
+import { computed, getCurrentInstance, ref, toRefs, watch } from 'vue'
+import { useStore } from 'vuex'
+import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 import CartIcon from "@/components/CartIcon.vue"
-import {Close as ElClose} from "@element-plus/icons-vue"
-import {useRouter} from "vue-router"
+import { Close as ElClose } from "@element-plus/icons-vue"
+import { useRouter } from "vue-router"
 import Clipboard from "clipboard"
 
-import {DocumentCopy, House, SwitchButton} from "@element-plus/icons-vue"
-import {useGetCart, useSignInfoGet, getWalletObj} from "@/hooks/api"
+import { DocumentCopy, House, SwitchButton } from "@element-plus/icons-vue"
+import { useGetCart, useSignInfoGet, getWalletObj } from "@/hooks/api"
 
 const that = getCurrentInstance().proxy
 const router = useRouter()
 const store = useStore()
-const {address} = toRefs(store.state.wallet)
+const { address } = toRefs(store.state.wallet)
 const tickLen = computed(() => Object.keys(store.state.wallet.ticks).length)
 const copyEl = ref(null)
 const connectDialog = ref(false)
+const navDialog = ref(false)
 watch(address, () => {
   if (address.value) {
     connectDialog.value = false
   }
 })
+
+const showNavDialog = () => {
+  navDialog.value = true
+}
 
 const walletLink = {
   metamask: "https://metamask.io/",
@@ -247,14 +273,14 @@ async function connect(type) {
     background: 'rgba(0, 0, 0, 0.7)'
   })
   try {
-    let accounts = await walletObj.request({method: "eth_requestAccounts"})
+    let accounts = await walletObj.request({ method: "eth_requestAccounts" })
     address = accounts?.[0]
     connectDialog.value = false
   } catch (e) {
     ElMessage.warning(e?.message || JSON.stringify(e))
   }
   loading.close()
-  store.commit('wallet/setAddress', {address, key: key})
+  store.commit('wallet/setAddress', { address, key: key })
 }
 
 function Copy() {
@@ -313,16 +339,16 @@ async function showDialog() {
 function doneCommand(val) {
   switch (val) {
     case 3:
-      store.commit('wallet/setAddress', {address: "", key: ""})
+      store.commit('wallet/setAddress', { address: "", key: "" })
       break
     case 1:
-      router.push({name: 'MyEthscriptions'})
+      router.push({ name: 'MyEthscriptions' })
       break
     case 2:
       copyEl.value?.click()
       break
     case 4:
-      router.push({name: 'Marketplace'})
+      router.push({ name: 'Marketplace' })
       cardDialog.value = false
       break
   }
@@ -370,7 +396,7 @@ async function buyBatch() {
   let ords = [], pids = [], prices = [], sells = [], deadlines = [], signs = [], buyAmts = [], orderAmts = []
 
   for (let i = 0; i < signDatas.length; i++) {
-    let {data, code, msg} = signDatas[i]
+    let { data, code, msg } = signDatas[i]
     if (code !== 200) {
       errMsg = msg
       break
@@ -513,6 +539,48 @@ async function buyBatch() {
       transform: scale(1.1)
     }
   }
+
+  .nav-icon {
+    margin-top: 5px;
+    display: none;
+  }
+
+
+  @media (max-width: 768px) {
+    .main {
+      min-width: 0;
+      padding: 0 10px;
+    }
+
+    .navigation {
+      display: none !important;
+    }
+
+    .nav-icon {
+      display: block;
+    }
+  }
+
+}
+
+.navDialog-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  font-size: 14px;
+
+  a {
+    color: #fff;
+    margin-top: 10px;
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 </style>
 
@@ -528,7 +596,8 @@ async function buyBatch() {
       color: #ffffff;
       font-size: 12px;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: rgba(255, 255, 255, 0.08);
       }
     }
@@ -642,7 +711,8 @@ async function buyBatch() {
             font-size: 12px;
             background-color: transparent;
 
-            td, th {
+            td,
+            th {
               line-height: 1;
               border: 0 none;
 
@@ -722,7 +792,7 @@ async function buyBatch() {
           font-size: 14px;
           color: #ffc107;
 
-          & > div {
+          &>div {
             display: flex;
             align-items: center;
           }
