@@ -8,7 +8,7 @@
         <div class="rune-detail-info-left">
           <h3 class="rune-detail-info-title">BSCR POOL</h3>
           <div class="rune-detail-info-introduce">
-              xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
           </div>
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
@@ -48,26 +48,25 @@
           </div>
           <div class="rune-console">
             <div class="rune-console-item">
-              <span class="rune-console-item-title background">Stake XboneLP:0</span>
+              <span class="rune-console-item-title">Stake:0</span>
               <span class="rune-console-item-button">Stake</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Claim (tax %)</div>
-                <div class="rune-console-item-subtitle">BNB</div>
+                <div>Claim:0</div>
               </div>
               <span class="rune-console-item-button">Claim</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Redeem</div>
-                <div class="rune-console-item-subtitle">RedeemBSCR NBN</div>
+                <div>Redeem:0</div>
               </div>
               <span class="rune-console-item-button">Redeem</span>
             </div>
           </div>
         </div>
-      </div><div class="rune-detail-info">
+      </div>
+      <div class="rune-detail-info">
         <div class="rune-detail-info-left">
           <h3 class="rune-detail-info-title">BSCS POOL</h3>
           <div class="rune-detail-info-introduce">
@@ -102,7 +101,7 @@
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Staking</span>
-              <span class="rune-mint-info-item-value">10 BSCS</span>
+              <span class="rune-mint-info-item-value">10 BSCSConnectWallet</span>
             </div>
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Bonus</span>
@@ -111,27 +110,24 @@
           </div>
           <div class="rune-console">
             <div class="rune-console-item">
-              <span class="rune-console-item-title background">Stake XboneLP:0</span>
+              <span class="rune-console-item-title">Stake:0</span>
               <span class="rune-console-item-button">Stake</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Claim (tax %)</div>
-                <div class="rune-console-item-subtitle">BNB</div>
+                <div>Claim:0</div>
               </div>
               <span class="rune-console-item-button">Claim</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Redeem</div>
-                <div class="rune-console-item-subtitle">RedeemBSCR NBN</div>
+                <div>Redeem:0</div>
               </div>
               <span class="rune-console-item-button">Redeem</span>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -154,11 +150,13 @@ const rune = ref({
 .etchCon {
   padding: 90px 30px 0;
 }
+
 .rune-view {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 30px;
+
   .rune-title {
     font-size: 24px;
     font-weight: 700;
@@ -166,6 +164,7 @@ const rune = ref({
     color: #fff;
     text-align: center;
   }
+
   .rune-detail {
     display: flex;
     justify-content: space-between;
@@ -175,6 +174,7 @@ const rune = ref({
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   }
+
   .rune-detail-info {
     display: flex;
     justify-content: space-between;
@@ -190,8 +190,10 @@ const rune = ref({
     border-radius: 10px;
     padding: 16px;
   }
+
   .rune-detail-info-left {
     width: 65%;
+
     .rune-detail-info-title {
       font-size: 24px;
       font-weight: 700;
@@ -199,6 +201,7 @@ const rune = ref({
       color: #fff;
       text-align: center;
     }
+
     .rune-detail-info-introduce {
       color: #fff;
       font-size: 16px;
@@ -211,15 +214,18 @@ const rune = ref({
       display: flex;
       justify-content: space-between;
       flex-direction: column;
+
       .rune-mint-address-item {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
+
         .rune-mint-address-item-title {
           font-size: 14px;
           color: #fff;
           margin-right: 10px;
         }
+
         .rune-mint-address-item-value {
           font-size: 16px;
           color: #fff;
@@ -227,57 +233,69 @@ const rune = ref({
       }
     }
   }
+
   .rune-detail-info-right {
     width: 34%;
   }
+
   .rune-mint-info {
     display: flex;
     justify-content: space-between;
+
     .rune-mint-info-item {
       display: flex;
       flex-direction: column;
       align-items: center;
+
       .rune-mint-info-item-title {
         font-size: 14px;
         color: #fff;
         margin-bottom: 10px;
       }
+
       .rune-mint-info-item-value {
         font-size: 16px;
         color: #fff;
       }
     }
   }
+
   .rune-console {
     margin-top: 20px;
+
     .rune-console-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
-      .background{
-        padding: 10px/*  */;
+
+      .background {
+        padding: 10px
+          /*  */
+        ;
         background-color: #999;
       }
+
       .rune-console-item-title {
         font-size: 14px;
         color: #fff;
+
         .rune-console-item-subtitle {
           font-size: 12px;
           color: #999;
-
         }
       }
+
       .rune-console-item-button {
         padding: 5px 10px;
         border-radius: 5px;
-        border: 1px solid #fff;
-        color: #fff;
+        background: #ffc107;
+        color: #000;
         cursor: pointer;
-        font-size: 14px;/*  */
+        font-size: 14px;
+        /*  */
       }
     }
   }
 }
-
 </style>
