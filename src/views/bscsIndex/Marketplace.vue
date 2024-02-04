@@ -25,6 +25,7 @@
              class="bscscriptions_btn">All Bscscriptions
         </div>
       </div>
+     <div class="scroll">
       <div class="tableList">
         <div class="tableLeft">
           <p>Collection</p>
@@ -69,6 +70,7 @@
           </div>
         </div>
       </div>
+     </div>
     </div>
   </div>
 </template>
@@ -388,5 +390,31 @@ function calcUnitPrice(price) {
   }
 
 
+}
+@media (max-width: 768px) {
+  .etchMiddle{
+    padding: 90px 20px 0 !important
+  }
+  .etchInput{
+    width: 100% !important;
+    button {
+      padding: 5px !important
+    }
+  }
+  .etch_wrap{
+    padding:  10px !important
+  }
+  .etch_wrap{
+    background: url("@/assets/images/banner1.png") right center / 300% 100% no-repeat !important
+  }
+  .scroll{
+    max-width: 100vw;
+    overflow: auto
+  }
+  .tableList
+  {
+      min-width: 900px;
+    padding: 50px 20px 30px !important;
+  }
 }
 </style>

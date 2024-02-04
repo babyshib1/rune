@@ -371,4 +371,32 @@ function linkTo(hash) {
     }
   }
 }
+@media (max-width: 768px) {
+  .etchMiddle{
+    margin: 20px 0 !important;
+  }
+  .detail{
+    margin: 20px 0 !important;
+    .detaiList{
+      p{
+        flex-direction: column;
+        align-items: center;
+        span{
+          width: 100%;
+          /* 超出... */
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: center;
+        }
+      }
+    }
+
+  }
+  .table{
+    margin: 20px 0 !important;
+    padding: 0 !important;
+  }
+ 
+}
 </style>

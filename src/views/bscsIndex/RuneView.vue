@@ -4,11 +4,31 @@
     <page-header />
     <div class="rune-view">
       <h2 class="rune-title">RUNE</h2>
+     
       <div class="rune-detail-info">
         <div class="rune-detail-info-left">
           <h3 class="rune-detail-info-title">BSCR POOL</h3>
           <div class="rune-detail-info-introduce">
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            <p>
+              Total supply: 210,000
+
+            </p>
+            <p>
+              Only 100 valid minting transactions per block, and the fees for failed minting will be refunded.
+
+            </p>
+            <p>
+              Automatic addition of 20% liquidity.
+
+            </p>
+            <p>
+              Transaction tax: 5% (BSCR Fund Pool 2%, BSCS Fund Pool 2%, Marketing 1%).
+
+            </p>
+            <p>
+              Every hour, 0.1% of BSCR in liquidity is burned.
+
+            </p>
           </div>
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
@@ -33,6 +53,7 @@
               <span class="rune-mint-address-item-title">Token contract</span>
               <span class="rune-mint-address-item-value">0x123123123123</span>
             </div>
+
           </div>
         </div>
         <div class="rune-detail-info-right">
@@ -49,9 +70,9 @@
           <div class="rune-console">
             <div class="rune-console-item">
               <span class="rune-console-item-title">Stake:{{ stakeValue }}
-                <div class="slider-box">
+                <!-- <div class="slider-box">
                   <el-slider class="class-slider" v-model="rune.stats.attack" :min="0" :max="100" />
-                </div>
+                </div> -->
 
               </span>
               <span class="rune-console-item-button">Stake</span>
@@ -69,13 +90,32 @@
               <span class="rune-console-item-button">Redeem</span>
             </div>
           </div>
+          <div class="rune-detail-info-introduce ">
+            <p>
+              Users can stake any amount of BSCR runes in the fund pool with a staking tax rate of 5%.
+
+            </p>
+            <p>
+              Staking is used to share BNB from the staking pool.
+
+            </p>
+            <p> Inviting friends to stake will earn you 5% of the BSCR runes they stake.</p>
+          </div>
         </div>
       </div>
       <div class="rune-detail-info">
         <div class="rune-detail-info-left">
           <h3 class="rune-detail-info-title">BSCS POOL</h3>
           <div class="rune-detail-info-introduce">
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            <p>
+              Total supply: 5000
+            </p>
+            <p>
+              Users can stake any amount of BSCS inscription in the fund pool with a staking tax rate of 0%.
+            </p>
+            <p>
+              Staking is used to share BNB from the staking pool.
+            </p>
           </div>
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
@@ -106,7 +146,7 @@
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Staking</span>
-              <span class="rune-mint-info-item-value">10 BSCSConnectWallet</span>
+              <span class="rune-mint-info-item-value">10 BSCS</span>
             </div>
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Bonus</span>
@@ -130,11 +170,18 @@
               </div>
               <span class="rune-console-item-button">Redeem</span>
             </div>
+            <div class="rune-detail-info-introduce">
+              <p> Users can stake any amount of BSCS inscription in the fund pool with a staking tax rate of 0%.
+              </p>
+              <p>
+                Staking is used to share BNB from the staking pool.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <el-dialog width="30%" append-to-body class="connect_dialog" v-model="connectDialog">
+    <!-- <el-dialog width="30%" append-to-body class="connect_dialog" v-model="connectDialog">
       <div class="dialog-box">
         <span>
           Stake:{{ stakeValue }}
@@ -144,7 +191,7 @@
           Stake
         </div>
       </div>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 <script lang="ts" setup>
@@ -201,14 +248,13 @@ const BSCS_RedeemValue = ref(0)
   .rune-detail-info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: normal;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     margin-top: 20px;
   }
 
   .rune-detail-info-left,
   .rune-detail-info-right {
-    height: 300px;
     background-color: #000;
     border-radius: 10px;
     padding: 16px;
@@ -225,12 +271,6 @@ const BSCS_RedeemValue = ref(0)
       text-align: center;
     }
 
-    .rune-detail-info-introduce {
-      color: #fff;
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
 
     .rune-mint-address {
       margin-top: 20px;
@@ -255,6 +295,13 @@ const BSCS_RedeemValue = ref(0)
         }
       }
     }
+  }
+
+  .rune-detail-info-introduce {
+    color: #a3a3a3;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
   }
 
   .rune-detail-info-right {
@@ -355,4 +402,21 @@ const BSCS_RedeemValue = ref(0)
     border-radius: 5px;
   }
 }
-</style>
+
+/* 手机端 */
+@media (max-width: 768px) {
+  .rune-view {
+    padding: 0 0px;
+  }
+
+  .rune-detail-info {
+    flex-direction: column;
+    padding: 0 !important
+  }
+
+  .rune-detail-info-left,
+  .rune-detail-info-right {
+    width: 100% !important;
+    margin-top: 20px;
+  }
+}</style>

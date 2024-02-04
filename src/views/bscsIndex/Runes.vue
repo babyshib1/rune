@@ -30,6 +30,7 @@
       </div>
     </div>
     <div class="table mw">
+     <div class="scroll">
       <div class="tableList">
         <div class="tableLeft">
           <p>Rune</p>
@@ -81,6 +82,7 @@
           <div class="MuiPagination-ul"></div>
         </div>
       </div>
+     </div>
     </div>
   </div>
 </template>
@@ -433,5 +435,24 @@ const searchClick = () => {
 .text-center {
   width: 100%;
   text-align: center;
+}
+@media (max-width: 768px) {
+  .etchMiddle {
+    padding: 90px 20px 0 !important;
+  }
+ 
+  .etchInput {
+    width: 100% !important;
+    button {
+      width: 100%;
+    }
+  }
+  .scroll{
+    max-width: 100vw;
+    overflow: auto
+  }
+  .tableList{
+    min-width: 900px !important;
+  }
 }
 </style>

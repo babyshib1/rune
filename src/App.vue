@@ -90,7 +90,6 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
   width: 100%;
-  min-width: 900px;
   position: relative;
   overflow-x: hidden;
   background: url("@/assets/images/Background.png") center/1200px auto no-repeat;

@@ -632,6 +632,13 @@ function calcUnitPrice(price) {
     }
   }
 }
+@media (max-width: 768px) {
+  .disType{
+      flex-direction: column;
+      padding: 20px 20px 20px 20px !important;
+      align-items: start !important;
+  }
+}
 </style>
 <style lang="scss">
 .sort_select_pop {

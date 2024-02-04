@@ -18,6 +18,7 @@
         <p class="Recognize">Recognize all operations including Tick Name and Address.</p>
       </div>
     </div>
+   <div class="scroll">
     <div class="table mw">
       <p class="root">The full list of token bscscriptions</p>
       <div class="tableList">
@@ -57,6 +58,7 @@
         </div>
       </div>
     </div>
+   </div>
   </div>
 </template>
 <script setup>
@@ -306,6 +308,30 @@ function searchClick() {
         }
       }
     }
+  }
+}
+@media (max-width: 768px) {
+  .etchMiddle{
+    padding: 90px 20px 0 !important
+  }
+  .etchInput{
+    width: 100% !important;
+    button {
+      padding: 5px !important
+    }
+  }
+  .etch_wrap{
+    padding:  10px !important
+  }
+  .etch_wrap{
+    background: url("@/assets/images/banner1.png") right center / 300% 100% no-repeat !important
+  }
+  .scroll{
+    max-width: 100vw;
+    overflow: auto
+  }
+  .table{
+    padding: 50px 20px 30px !important;
   }
 }
 </style>
