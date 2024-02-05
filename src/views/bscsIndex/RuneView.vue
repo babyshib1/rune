@@ -33,21 +33,21 @@
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Total staking </span>
-              <span class="rune-mint-info-item-value">10</span>
+              <span class="rune-mint-info-item-value">10 BSCR</span>
             </div>
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Number of stakers</span>
               <span class="rune-mint-info-item-value">10</span>
             </div>
             <div class="rune-mint-info-item">
-              <span class="rune-mint-info-item-title">Fund pools(BNB)</span>
-              <span class="rune-mint-info-item-value">10</span>
+              <span class="rune-mint-info-item-title">Fund pools</span>
+              <span class="rune-mint-info-item-value">10 BNB</span>
             </div>
           </div>
           <div class="rune-mint-address">
             <div class="rune-mint-address-item">
               <span class="rune-mint-address-item-title">Pledge contract</span>
-              <span class="rune-mint-address-item-value">10</span>
+              <span class="rune-mint-address-item-value">10 BNB</span>
             </div>
             <div class="rune-mint-address-item">
               <span class="rune-mint-address-item-title">Token contract</span>
@@ -69,7 +69,7 @@
           </div>
           <div class="rune-console">
             <div class="rune-console-item">
-              <span class="rune-console-item-title">Stake:{{ stakeValue }}
+              <span class="rune-console-item-title">Stake:{{ stakeValue }} BSCR
                 <!-- <div class="slider-box">
                   <el-slider class="class-slider" v-model="rune.stats.attack" :min="0" :max="100" />
                 </div> -->
@@ -79,13 +79,13 @@
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Claim:{{ claimValue }}</div>
+                <div>Claim:{{ claimValue }} BNB</div>
               </div>
               <span class="rune-console-item-button">Claim</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Redeem:{{ redeemValue }}</div>
+                <div>Redeem:{{ redeemValue }} BSCR</div>
               </div>
               <span class="rune-console-item-button">Redeem</span>
             </div>
@@ -120,15 +120,15 @@
           <div class="rune-mint-info">
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Total staking </span>
-              <span class="rune-mint-info-item-value">10 </span>
+              <span class="rune-mint-info-item-value">10 BSCS </span>
             </div>
             <div class="rune-mint-info-item">
               <span class="rune-mint-info-item-title">Number of stakers</span>
               <span class="rune-mint-info-item-value">10</span>
             </div>
             <div class="rune-mint-info-item">
-              <span class="rune-mint-info-item-title">Fund pools(BNB)</span>
-              <span class="rune-mint-info-item-value">10</span>
+              <span class="rune-mint-info-item-title">Fund pools</span>
+              <span class="rune-mint-info-item-value">10 BNB</span>
             </div>
           </div>
           <div class="rune-mint-address">
@@ -155,18 +155,18 @@
           </div>
           <div class="rune-console">
             <div class="rune-console-item">
-              <span class="rune-console-item-title">Stake:{{ BSCS_StakeValue }}</span>
+              <span class="rune-console-item-title">Stake:{{ BSCS_StakeValue }} BSCS</span>
               <span class="rune-console-item-button">Stake</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Claim:{{ BSCS_ClaimValue }}</div>
+                <div>Claim:{{ BSCS_ClaimValue }} BNB</div>
               </div>
               <span class="rune-console-item-button">Claim</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
-                <div>Redeem:{{ BSCS_RedeemValue }}</div>
+                <div>Redeem:{{ BSCS_RedeemValue }} BSCS</div>
               </div>
               <span class="rune-console-item-button">Redeem</span>
             </div>
