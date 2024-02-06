@@ -62,16 +62,6 @@
                 <button class="mintBtn" @click.stop="">Mint</button>
               </div>
             </div>
-
-            <div>
-              <div class="text-center">{{ item.holders }}</div>
-            </div>
-            <div>
-              <span>{{ item.created }}</span>
-            </div>
-            <div class="btnbox">
-              <button class="mintBtn" @click.stop="">Mint</button>
-            </div>
           </div>
           <div class="pageNum">
             <div class="MuiPagination-ul"></div>
