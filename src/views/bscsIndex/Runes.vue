@@ -5,24 +5,13 @@
       <div class="market_head">
         <div class="title">Runes</div>
         <div class="etchInput">
-          <input
-            spellcheck="false"
-            v-model="keyword"
-            type="text"
-            placeholder="enter the tick name"
-          />
+          <input spellcheck="false" v-model="keyword" type="text" placeholder="enter the tick name" />
           <i></i>
           <button @click="searchClick">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="#fff"
-            >
-              <path
-                fill="#fff"
-                d="m15.938 14.188 2.687 2.687c.25.25.25.625 0 .875l-.875.875a.604.604 0 0 1-.875 0L14.25 16c-1.375 1-3 1.563-4.813 1.563a8.109 8.109 0 0 1-8.124-8.125c0-4.5 3.625-8.126 8.124-8.126 4.5 0 8.126 3.625 8.126 8.126a8.52 8.52 0 0 1-1.625 4.75ZM9.375 16.25a6.855 6.855 0 0 0 6.875-6.875A6.855 6.855 0 0 0 9.375 2.5 6.855 6.855 0 0 0 2.5 9.375a6.855 6.855 0 0 0 6.875 6.875Z"
-              ></path>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff">
+              <path fill="#fff"
+                d="m15.938 14.188 2.687 2.687c.25.25.25.625 0 .875l-.875.875a.604.604 0 0 1-.875 0L14.25 16c-1.375 1-3 1.563-4.813 1.563a8.109 8.109 0 0 1-8.124-8.125c0-4.5 3.625-8.126 8.124-8.126 4.5 0 8.126 3.625 8.126 8.126a8.52 8.52 0 0 1-1.625 4.75ZM9.375 16.25a6.855 6.855 0 0 0 6.875-6.875A6.855 6.855 0 0 0 9.375 2.5 6.855 6.855 0 0 0 2.5 9.375a6.855 6.855 0 0 0 6.875 6.875Z">
+              </path>
             </svg>
           </button>
         </div>
@@ -30,40 +19,47 @@
       </div>
     </div>
     <div class="table mw">
-     <div class="scroll">
-      <div class="tableList">
-        <div class="tableLeft">
-          <p>Rune</p>
-          <p class="text-center">Suppli</p>
-          <p class="text-center">Progress </p>
-          <p class="text-center">Holders</p>
-          <p>
-            Deploy Time
-          </p>
-          <p></p>
+      <div class="scroll">
+        <div class="tableList">
+          <div class="tableLeft">
+            <p>Rune</p>
+            <p class="text-center">Suppli</p>
+            <p class="text-center">Progress </p>
+            <p class="text-center">Holders</p>
+            <p>
+              Deploy Time
+            </p>
+            <p></p>
 
-          <p style="width: 20px; flex: none; height: 1px"></p>
-        </div>
-        <div class="tableFlex" v-for="(item, index) in list" :key="index"
-        @click="() => $router.push({ path: '/RuneView' })"
-        >
-          <div class="tableRight">
-            <div class="p1">
-              {{ item.type }}
-              <span>{{ item.name }}</span>
-              <img
-                src="@/assets/projects/gold.png"
-                style="width: 20px; height: 20px"
-              />
-            </div>
-            <div>
-              <div class="text-center">{{ item.supply }}</div>
-            </div>
+            <p style="width: 20px; flex: none; height: 1px"></p>
+          </div>
+          <div class="tableFlex" v-for="(item, index) in list" :key="index"
+            @click="() => $router.push({ path: '/RuneView' })">
+            <div class="tableRight">
+              <div class="p1">
+                {{ item.type }}
+                <span>{{ item.name }}</span>
+                <img src="@/assets/projects/gold.png" style="width: 20px; height: 20px" />
+              </div>
+              <div>
+                <div class="text-center">{{ item.supply }}</div>
+              </div>
 
-            <div class="Progress">
-              <span>{{ item.progress }}</span>
-              <div class="procces_main">
-                <div class="index" style="width: 100%"></div>
+              <div class="Progress">
+                <span>{{ item.progress }}</span>
+                <div class="procces_main">
+                  <div class="index" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-center">{{ item.holders }}</div>
+              </div>
+              <div>
+                <span>{{ item.created }}</span>
+              </div>
+              <div>
+                <button class="mintBtn" @click.stop="">Mint</button>
               </div>
             </div>
 
@@ -77,18 +73,30 @@
               <button class="mintBtn" @click.stop="">Mint</button>
             </div>
           </div>
-        </div>
-        <div class="pageNum">
-          <div class="MuiPagination-ul"></div>
+          <div class="pageNum">
+            <div class="MuiPagination-ul"></div>
+          </div>
         </div>
       </div>
-     </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+import { ElLoading } from "element-plus"
 import { ref } from "vue"
-
+const loading = ref(null)
+// 打开loading
+const openLoading = () => {
+  loading.value = ElLoading.service({
+    lock: true,
+    text: 'Loading', // 加载的文字
+    background: 'rgba(0, 0, 0, 0.7)'
+  })
+}
+// 关闭loading
+const closeLoading = () => {
+  loading.value.close()
+}
 const list = ref([
   {
     type: "BSCR",
@@ -108,6 +116,7 @@ const searchClick = () => {
 <style lang="scss" scoped>
 .etchMiddle {
   padding: 90px 30px 0;
+
   .market_head {
     height: 3.33333rem !important;
     height: 200px;
@@ -177,10 +186,11 @@ const searchClick = () => {
         content: "";
       }
     }
-    .sub-title{
+
+    .sub-title {
       font-size: 14px;
       color: #fff;
-      padding:  0;
+      padding: 0;
     }
   }
 
@@ -207,6 +217,7 @@ const searchClick = () => {
   //  opacity: 0.9;
   //}
 }
+
 .list {
   width: 100%;
   flex: 1;
@@ -246,6 +257,7 @@ const searchClick = () => {
     }
   }
 }
+
 .table {
   margin: 0 10px;
   border-radius: 4px;
@@ -321,7 +333,7 @@ const searchClick = () => {
         align-items: center;
         //border-bottom: 1px solid rgb(47, 52, 62);
 
-        & > div {
+        &>div {
           font-size: 13px;
           flex: 1;
           cursor: pointer;
@@ -339,6 +351,7 @@ const searchClick = () => {
           font-weight: bolder;
           font-style: italic;
           font-size: 18px;
+
           span {
             font-weight: normal;
             border-radius: 30px;
@@ -353,7 +366,8 @@ const searchClick = () => {
         .Progress {
           display: flex;
           flex-direction: column;
-          align-items:center;
+          align-items: center;
+
           span {
             display: block;
             width: 80%;
@@ -392,6 +406,7 @@ const searchClick = () => {
         gap: 16px;
 
         &:deep {
+
           button,
           li {
             color: rgb(255, 255, 255);
@@ -416,6 +431,7 @@ const searchClick = () => {
     }
   }
 }
+
 .mintBtn {
   margin-right: 0.26667rem;
   background: #ffc107;
@@ -431,6 +447,7 @@ const searchClick = () => {
   transition: all 0.5s;
   cursor: pointer;
 }
+
 /* 居中 */
 .text-center {
   width: 100%;
@@ -442,22 +459,26 @@ const searchClick = () => {
   justify-content: center;
 
 }
+
 @media (max-width: 768px) {
   .etchMiddle {
     padding: 90px 20px 0 !important;
   }
- 
+
   .etchInput {
     width: 100% !important;
+
     button {
       width: 100%;
     }
   }
-  .scroll{
+
+  .scroll {
     max-width: 100vw;
     overflow: auto
   }
-  .tableList{
+
+  .tableList {
     min-width: 900px !important;
   }
 }
