@@ -26,7 +26,7 @@
             <p class="text-center">Suppli</p>
             <p class="text-center">Progress </p>
             <p class="text-center">Holders</p>
-            <p>
+            <p class="text-center"> 
               Deploy Time
             </p>
             <p></p>
@@ -56,7 +56,7 @@
                 <div class="text-center">{{ item.holders }}</div>
               </div>
               <div>
-                <span>{{ item.created }}</span>
+                <div class="text-center">{{ item.created }}</div>
               </div>
               <div>
                 <button class="mintBtn" @click.stop="">Mint</button>
