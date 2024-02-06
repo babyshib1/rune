@@ -4,7 +4,7 @@
     <page-header />
     <div class="rune-view">
       <h2 class="rune-title">RUNE</h2>
-     
+
       <div class="rune-detail-info">
         <div class="rune-detail-info-left">
           <h3 class="rune-detail-info-title">BSCR POOL</h3>
@@ -162,7 +162,7 @@
               <div class="rune-console-item-title">
                 <div>Claim:{{ BSCS_ClaimValue }} BNB</div>
               </div>
-              <span class="rune-console-item-button">Claim</span>
+              <span class="rune-console-item-button" @click="openLoading">Claim</span>
             </div>
             <div class="rune-console-item">
               <div class="rune-console-item-title">
@@ -195,6 +195,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { ElLoading } from "element-plus"
 import { ref } from "vue"
 const rune = ref({
   name: "RUNE",
@@ -215,6 +216,19 @@ const redeemValue = ref(0)
 const BSCS_StakeValue = ref(0)
 const BSCS_ClaimValue = ref(0)
 const BSCS_RedeemValue = ref(0)
+const loading = ref(null)
+// 打开loading
+const openLoading = () => {
+  loading.value = ElLoading.service({
+    lock: true,
+    text: 'Loading', // 加载的文字
+    background: 'rgba(0, 0, 0, 0.7)'
+  })
+}
+// 关闭loading
+const closeLoading = () => {
+  loading.value.close()
+}
 </script>
 <style lang="scss" scoped>
 .etchCon {
@@ -419,4 +433,5 @@ const BSCS_RedeemValue = ref(0)
     width: 100% !important;
     margin-top: 20px;
   }
-}</style>
+}
+</style>
