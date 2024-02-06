@@ -73,7 +73,7 @@
             <div>
               <span>{{ item.created }}</span>
             </div>
-            <div>
+            <div class="btnbox">
               <button class="mintBtn" @click.stop="">Mint</button>
             </div>
           </div>
@@ -435,6 +435,12 @@ const searchClick = () => {
 .text-center {
   width: 100%;
   text-align: center;
+}
+.btnbox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 @media (max-width: 768px) {
   .etchMiddle {
