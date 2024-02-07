@@ -34,7 +34,7 @@
         <div class="tableList">
           <div class="tableLeft">
             <p>Rune</p>
-            <p class="text-center">Suppli</p>
+            <p class="text-center">Supply</p>
             <p class="text-center">Progress</p>
             <p class="text-center">Holders</p>
             <p class="text-center">Deploy Time</p>
