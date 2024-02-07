@@ -5,13 +5,24 @@
       <div class="market_head">
         <div class="title">Runes</div>
         <div class="etchInput">
-          <input spellcheck="false" v-model="keyword" type="text" placeholder="enter the tick name" />
+          <input
+            spellcheck="false"
+            v-model="keyword"
+            type="text"
+            placeholder="enter the tick name"
+          />
           <i></i>
           <button @click="searchClick">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff">
-              <path fill="#fff"
-                d="m15.938 14.188 2.687 2.687c.25.25.25.625 0 .875l-.875.875a.604.604 0 0 1-.875 0L14.25 16c-1.375 1-3 1.563-4.813 1.563a8.109 8.109 0 0 1-8.124-8.125c0-4.5 3.625-8.126 8.124-8.126 4.5 0 8.126 3.625 8.126 8.126a8.52 8.52 0 0 1-1.625 4.75ZM9.375 16.25a6.855 6.855 0 0 0 6.875-6.875A6.855 6.855 0 0 0 9.375 2.5 6.855 6.855 0 0 0 2.5 9.375a6.855 6.855 0 0 0 6.875 6.875Z">
-              </path>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="#fff"
+            >
+              <path
+                fill="#fff"
+                d="m15.938 14.188 2.687 2.687c.25.25.25.625 0 .875l-.875.875a.604.604 0 0 1-.875 0L14.25 16c-1.375 1-3 1.563-4.813 1.563a8.109 8.109 0 0 1-8.124-8.125c0-4.5 3.625-8.126 8.124-8.126 4.5 0 8.126 3.625 8.126 8.126a8.52 8.52 0 0 1-1.625 4.75ZM9.375 16.25a6.855 6.855 0 0 0 6.875-6.875A6.855 6.855 0 0 0 9.375 2.5 6.855 6.855 0 0 0 2.5 9.375a6.855 6.855 0 0 0 6.875 6.875Z"
+              ></path>
             </svg>
           </button>
         </div>
@@ -24,22 +35,27 @@
           <div class="tableLeft">
             <p>Rune</p>
             <p class="text-center">Suppli</p>
-            <p class="text-center">Progress </p>
+            <p class="text-center">Progress</p>
             <p class="text-center">Holders</p>
-            <p class="text-center"> 
-              Deploy Time
-            </p>
+            <p class="text-center">Deploy Time</p>
             <p></p>
 
             <p style="width: 20px; flex: none; height: 1px"></p>
           </div>
-          <div class="tableFlex" v-for="(item, index) in list" :key="index"
-            @click="() => $router.push({ path: '/RuneView' })">
+          <div
+            class="tableFlex"
+            v-for="(item, index) in [bscr]"
+            :key="index"
+            @click="() => $router.push({ path: '/RuneView' })"
+          >
             <div class="tableRight">
               <div class="p1">
                 {{ item.type }}
                 <span>{{ item.name }}</span>
-                <img src="@/assets/projects/gold.png" style="width: 20px; height: 20px" />
+                <img
+                  src="@/assets/projects/gold.png"
+                  style="width: 20px; height: 20px"
+                />
               </div>
               <div>
                 <div class="text-center">{{ item.supply }}</div>
@@ -48,18 +64,27 @@
               <div class="Progress">
                 <span>{{ item.progress }}</span>
                 <div class="procces_main">
-                  <div class="index" style="width: 100%"></div>
+                  <div class="index" :style="`width: ${item.progress}`"></div>
                 </div>
               </div>
 
               <div>
-                <div class="text-center">{{ item.holders }}</div>
+                <div class="text-center">{{ item.minterCount }}</div>
               </div>
+
               <div>
                 <div class="text-center">{{ item.created }}</div>
               </div>
+
               <div>
-                <button class="mintBtn" @click.stop="">Mint</button>
+                <button
+                  class="mintBtn"
+                  v-if="bscr.mintedCount >= bscr.maxMintCount"
+                  @click.stop=""
+                >
+                  Full
+                </button>
+                <button class="mintBtn" v-else @click.stop="mint">Mint</button>
               </div>
             </div>
           </div>
@@ -72,37 +97,122 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ElLoading } from "element-plus"
-import { ref } from "vue"
-const loading = ref(null)
-// 打开loading
+import { ElLoading, ElMessage } from "element-plus";
+import { ref, onMounted } from "vue";
+import bscrABI from "../../plugins/contracts/abis/bscr";
+import web3 from "web3";
+
+const loading = ref(null);
 const openLoading = () => {
   loading.value = ElLoading.service({
     lock: true,
-    text: 'Loading', // 加载的文字
-    background: 'rgba(0, 0, 0, 0.7)'
-  })
-}
+    text: "Loading", // 加载的文字
+    background: "rgba(0, 0, 0, 0.7)",
+  });
+};
 // 关闭loading
 const closeLoading = () => {
-  loading.value.close()
-}
-const list = ref([
-  {
-    type: "BSCR",
-    name: "BSC-20",
-    supply: "100,000,000",
-    progress: "0%",
-    holders: "0",
-    created: "2021-09-09 12:00:00"
-  }
-])
-const keyword = ref("")
+  loading.value.close();
+};
+const bscr = ref({
+  type: "BSCR",
+  name: "BSC-20",
+  supply: "210,000",
+  progress: "0%",
+  mintedCount: 0,
+  minterCount: 0,
+  // TODO 这部分可能需要修改，比如maxMintCount上线后应该为210000, 时间为部署合约的时间, mintValue为0.005BNB，合约需要修改
+  address: "0x29Ba2AEBC809Af28c553b3f04c8Fea7b7337d477",
+  created: "2024-02-07 09:39:10",
+  mintValue: web3.utils.toBN(1e18 * 0.005),
+  maxMintCount: 210000, //
+});
+const keyword = ref("");
 const searchClick = () => {
-  console.log(keyword.value)
-}
+  console.log(keyword.value);
+};
+const syncBscr = async () => {
+  try {
+    const ethereum = (window as any).ethereum;
+    if (!ethereum) return;
+    const provider = new web3(ethereum);
+    const bscrContract = new provider.eth.Contract(
+      bscrABI as any,
+      bscr.value.address
+    );
+    const mintValue = await bscrContract.methods.MINT_VALUE().call();
+    const mintedCount = await bscrContract.methods.mintedCount().call();
+    const minterCount = await bscrContract.methods.minterCount().call();
+    bscr.value.mintValue = web3.utils.toBN(mintValue);
+    bscr.value.mintedCount = mintedCount;
+    bscr.value.minterCount = minterCount;
+    bscr.value.progress = `${((mintedCount / bscr.value.maxMintCount) * 100)
+      .toFixed(2)
+      .replace(".00", "")}%`;
+  } catch (e) {
+    console.log(e);
+  }
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  syncBscr();
+};
+
+const mint = async () => {
+  if (bscr.value.mintedCount >= bscr.value.maxMintCount)
+    return ElMessage({
+      message: "Full",
+      type: "error",
+    });
+
+  const execute = async () => {
+    const ethereum = (window as any).ethereum;
+    if (!ethereum) {
+      ElMessage({
+        message: "Please connect wallet first.",
+        type: "error",
+      });
+      return;
+    }
+    try {
+      const provider = new web3(ethereum);
+      const txReq = {
+        from: await provider.eth.getAccounts().then((res) => res[0]),
+        to: bscr.value.address,
+        value: bscr.value.mintValue,
+        data: "0x1249c58b",
+      };
+      const gas = await provider.eth.estimateGas(txReq);
+      const tx = await provider.eth.sendTransaction({
+        ...txReq,
+        gas: Math.floor(gas * 1.5),
+        gasPrice: 3e9,
+      });
+      ElMessage({
+        message: `Mint transaction has been sent. ${tx.transactionHash}`,
+        type: "info",
+      });
+    } catch (e) {
+      let msg: any = e.message?.message || e.reason || e.message || e;
+      try {
+        msg = JSON.parse(msg.split("\n").slice(1).join(""));
+        msg = msg.message;
+      } catch (e) {}
+      ElMessage({
+        message: msg,
+        type: "error",
+      });
+    }
+  };
+
+  openLoading();
+  await execute();
+  closeLoading();
+};
+
+onMounted(() => {
+  syncBscr();
+});
 </script>
-<script></script>
+
 <style lang="scss" scoped>
 .etchMiddle {
   padding: 90px 30px 0;
@@ -323,7 +433,7 @@ const searchClick = () => {
         align-items: center;
         //border-bottom: 1px solid rgb(47, 52, 62);
 
-        &>div {
+        & > div {
           font-size: 13px;
           flex: 1;
           cursor: pointer;
@@ -396,7 +506,6 @@ const searchClick = () => {
         gap: 16px;
 
         &:deep {
-
           button,
           li {
             color: rgb(255, 255, 255);
@@ -443,11 +552,10 @@ const searchClick = () => {
   width: 100%;
   text-align: center;
 }
-.btnbox{
+.btnbox {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 @media (max-width: 768px) {
@@ -465,7 +573,7 @@ const searchClick = () => {
 
   .scroll {
     max-width: 100vw;
-    overflow: auto
+    overflow: auto;
   }
 
   .tableList {
