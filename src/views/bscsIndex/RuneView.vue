@@ -115,7 +115,6 @@
               staking tax rate of 5%.
             </p>
             <p>Staking is used to share BNB from the staking pool.</p>
-            
           </div>
         </div>
       </div>
@@ -239,18 +238,18 @@ const rune = ref({
   },
 });
 // TODO 修改token合约 和 质押合约 其他无需修改
-const bscrTokenContract = ref("0x29Ba2AEBC809Af28c553b3f04c8Fea7b7337d477");
+const bscrTokenContract = ref("0x40249a500d9e74B0c951631Fe576D7eF46598545");
 const bscrPoolInfo = ref({
   totalStake: "0",
   stakers: "0",
   fundPools: "0",
-  pledgeContract: "0x3199a4861b2BaCDDd38dbED832D09F0D4976809C",
+  pledgeContract: "0x12e1ab713E98323C997fFf02E65F64F330ff1c14",
 });
 const bscsPoolInfo = ref({
   totalStake: "0",
   stakers: "0",
   fundPools: "0",
-  pledgeContract: "--",
+  pledgeContract: "--", // 固定地址 0xaE73066BfC1986dD9ff5E85F3162A23e74839d12
 });
 const mineBscrInfo = ref({
   staking: "0",
@@ -326,6 +325,18 @@ const syncInfos = async () => {
     mineBscrInfo.value.balance = web3.utils.fromWei(balance as any, "ether");
     mineBscrInfo.value.allowance = web3.utils.fromWei(
       allowance as any,
+      "ether"
+    );
+  } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    const fundPools = await provider.eth.getBalance(
+      "0xaE73066BfC1986dD9ff5E85F3162A23e74839d12"
+    );
+    bscsPoolInfo.value.fundPools = web3.utils.fromWei(
+      fundPools as any,
       "ether"
     );
   } catch (e) {

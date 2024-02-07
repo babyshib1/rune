@@ -117,15 +117,15 @@ const closeLoading = () => {
 const bscr = ref({
   type: "BSCR",
   name: "BSC-20",
-  supply: "210,000",
+  supply: "157,500",
   progress: "0%",
   mintedCount: 0,
   minterCount: 0,
   // TODO 这部分可能需要修改，比如maxMintCount上线后应该为210000, 时间为部署合约的时间, mintValue为0.005BNB，合约需要修改
-  address: "0x29Ba2AEBC809Af28c553b3f04c8Fea7b7337d477",
-  created: "2024-02-07 09:39:10",
+  address: "0x40249a500d9e74B0c951631Fe576D7eF46598545",
+  created: "2024-02-08 00:00:00",
   mintValue: web3.utils.toBN(1e18 * 0.005),
-  maxMintCount: 210000, //
+  maxMintCount: 157500, //
 });
 const keyword = ref("");
 const searchClick = () => {
