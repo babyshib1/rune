@@ -115,10 +115,7 @@
               staking tax rate of 5%.
             </p>
             <p>Staking is used to share BNB from the staking pool.</p>
-            <p>
-              Inviting friends to stake will earn you 5% of the BSCR runes they
-              stake.
-            </p>
+            
           </div>
         </div>
       </div>
