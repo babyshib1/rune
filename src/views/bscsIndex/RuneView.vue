@@ -281,6 +281,12 @@ const syncInfos = async () => {
   const ethereum = (window as any).ethereum;
   if (!ethereum) return;
   const provider = new web3(ethereum);
+  const targetChainId = await provider.eth.getChainId();
+  if (targetChainId !== 56)
+    return ElMessage({
+      message: "Please switch to BSC network.",
+      type: "error",
+    });
   const bscrContract = new provider.eth.Contract(
     bscrABI as any,
     bscrTokenContract.value
@@ -352,6 +358,12 @@ const approve = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrContract = new provider.eth.Contract(
       bscrABI as any,
       bscrTokenContract.value
@@ -404,6 +416,12 @@ const stake = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrStakeContract = new provider.eth.Contract(
       bscrStakeABI as any,
       bscrPoolInfo.value.pledgeContract
@@ -455,6 +473,12 @@ const claim = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrStakeContract = new provider.eth.Contract(
       bscrStakeABI as any,
       bscrPoolInfo.value.pledgeContract
@@ -504,6 +528,12 @@ const redeem = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrStakeContract = new provider.eth.Contract(
       bscrStakeABI as any,
       bscrPoolInfo.value.pledgeContract
