@@ -32,18 +32,17 @@
     <div class="table mw">
       <div class="scroll">
         <div class="tableList">
-          <div class="tableLeft">
+          <div class="tableLeft relative">
             <p>Rune</p>
             <p class="text-center">Supply</p>
             <p class="text-center">Progress</p>
             <p class="text-center">Holders</p>
             <p class="text-center">Deploy Time</p>
-            <p></p>
+            <p class="phone-fixed fixed-td"> </p>
 
-            <p style="width: 20px; flex: none; height: 1px"></p>
           </div>
           <div
-            class="tableFlex"
+            class="tableFlex relative"
             v-for="(item, index) in [bscr]"
             :key="index"
             @click="() => $router.push({ path: '/RuneView' })"
@@ -76,7 +75,7 @@
                 <div class="text-center">{{ item.created }}</div>
               </div>
 
-              <div>
+              <div class="phone-fixed">
                 <button
                   class="mintBtn"
                   v-if="bscr.mintedCount >= bscr.maxMintCount"
@@ -559,6 +558,9 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
+  .table {
+    padding: 20px 10px;
+  }
   .etchMiddle {
     padding: 90px 20px 0 !important;
   }
@@ -572,12 +574,30 @@ onMounted(() => {
   }
 
   .scroll {
-    max-width: 100vw;
+    max-width: 73vw;
     overflow: auto;
   }
 
   .tableList {
-    min-width: 900px !important;
+    min-width: 700px !important;
   }
+  .phone-fixed{
+    width: 80px;
+    height: 16px;
+    position: fixed;
+    right: 13px;
+    
+  }
+  .fixed-td{
+    padding: 12px 20px;
+    background: #000000;
+    height: 39px;
+    border-radius: 0 6px 6px 0;
+  }
+  .relative{
+    padding-right: 80px !important;
+    position: relative;
+  }
+ 
 }
 </style>

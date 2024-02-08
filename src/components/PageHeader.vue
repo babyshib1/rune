@@ -276,7 +276,7 @@
           <router-link to="/bscsMarket">Home</router-link>
           <router-link to="/Tokens">Tokens</router-link>
           <router-link to="/Marketplace">Marketplace</router-link>
-          <!-- <router-link to="/Runes">Runes</router-link> -->
+          <router-link to="/Runes">Runes</router-link>
           <!-- <router-link to="/Deploymint">Deploy</router-link> -->
         </div>
       </div>
