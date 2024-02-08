@@ -187,7 +187,7 @@ const mint = async () => {
       });
       ElMessage({
         message: `Mint transaction has been sent. ${tx.transactionHash}`,
-        type: "info",
+        type: "success",
       });
     } catch (e) {
       let msg: any = e.message?.message || e.reason || e.message || e;
