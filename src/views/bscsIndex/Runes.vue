@@ -29,16 +29,16 @@
         <div class="sub-title">bsc-20 rune platform</div>
       </div>
     </div>
-    <div class="table mw">
+    <div class="table mw relative">
       <div class="scroll">
         <div class="tableList">
-          <div class="tableLeft relative">
+          <div class="tableLeft ">
             <p>Rune</p>
             <p class="text-center">Supply</p>
             <p class="text-center">Progress</p>
             <p class="text-center">Holders</p>
             <p class="text-center">Deploy Time</p>
-            <p class="phone-fixed fixed-td"> </p>
+            <p> </p>
 
           </div>
           <div
@@ -574,18 +574,19 @@ onMounted(() => {
   }
 
   .scroll {
-    max-width: 73vw;
-    overflow: auto;
+    max-width: 100vw;
+    overflow-x: auto;
   }
 
   .tableList {
     min-width: 700px !important;
   }
-  .phone-fixed{
+  /* .phone-fixed{
     width: 80px;
     height: 16px;
-    position: fixed;
-    right: 13px;
+    position: absolute;
+    right: 0px;
+    z-index: 99;
     
   }
   .fixed-td{
@@ -593,11 +594,11 @@ onMounted(() => {
     background: #000000;
     height: 39px;
     border-radius: 0 6px 6px 0;
+    z-index: 99;
   }
   .relative{
-    padding-right: 80px !important;
     position: relative;
-  }
+  } */
  
 }
 </style>
