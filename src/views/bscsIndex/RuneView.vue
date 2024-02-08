@@ -371,7 +371,6 @@ const approve = async () => {
         from: account,
         gas: Math.floor(gas * 1.5),
         gasPrice: 3e9,
-        chainId: 56,
       });
       console.log(tx);
       ElMessage({
@@ -423,7 +422,6 @@ const stake = async () => {
           from: account,
           gas: Math.floor(gas * 1.5),
           gasPrice: 3e9,
-          chainId: 56,
         });
       console.log(tx);
       ElMessage({
@@ -473,7 +471,6 @@ const claim = async () => {
         from: account,
         gas: Math.floor(gas * 1.5),
         gasPrice: 3e9,
-        chainId: 56,
       });
       console.log(tx);
       ElMessage({
@@ -523,7 +520,6 @@ const redeem = async () => {
         from: account,
         gas: Math.floor(gas * 1.5),
         gasPrice: 3e9,
-        chainId: 56,
       });
       console.log(tx);
       ElMessage({
