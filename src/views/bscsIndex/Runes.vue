@@ -29,16 +29,16 @@
         <div class="sub-title">bsc-20 rune platform</div>
       </div>
     </div>
-    <div class="table mw relative">
+    <div class="table mw ">
       <div class="scroll">
         <div class="tableList">
-          <div class="tableLeft ">
+          <div class="tableLeft relative">
             <p>Rune</p>
             <p class="text-center">Supply</p>
             <p class="text-center">Progress</p>
             <p class="text-center">Holders</p>
             <p class="text-center">Deploy Time</p>
-            <p> </p>
+            <p class="fixed-td phone-fixed"> </p>
 
           </div>
           <div
@@ -75,7 +75,7 @@
                 <div class="text-center">{{ item.created }}</div>
               </div>
 
-              <div class="phone-fixed">
+              <div class="phone-fixed phone-fixed-btn">
                 <button
                   class="mintBtn"
                   v-if="bscr.mintedCount >= bscr.maxMintCount"
@@ -422,9 +422,9 @@ onMounted(() => {
       justify-content: space-between;
       border-bottom: 1px solid rgb(47, 52, 62);
 
-      &:hover {
+      /* &:hover {
         background-color: #484d56;
-      }
+      } */
 
       .tableRight {
         flex: 1;
@@ -519,10 +519,10 @@ onMounted(() => {
             cursor: pointer;
             font-size: 13px;
 
-            &.is-active {
+            /* &.is-active {
               background: #484d56;
               border: 1px solid #484d56;
-            }
+            } */
           }
         }
       }
@@ -581,24 +581,33 @@ onMounted(() => {
   .tableList {
     min-width: 700px !important;
   }
-  /* .phone-fixed{
-    width: 80px;
+  .phone-fixed{
+    width: 90px;
     height: 16px;
-    position: absolute;
+    position: fixed;
     right: 0px;
     z-index: 99;
     
   }
+  .phone-fixed-btn{
+
+    background: rgb(29,37,31);
+    height: 55px;
+    border-radius: 6px;
+
+  }
   .fixed-td{
     padding: 12px 20px;
     background: #000000;
-    height: 39px;
+    height: 40px;
     border-radius: 0 6px 6px 0;
     z-index: 99;
+  
   }
   .relative{
     position: relative;
-  } */
+    margin-right: 80px;
+  } 
  
 }
 </style>
