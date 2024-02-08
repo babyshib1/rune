@@ -32,14 +32,13 @@
     <div class="table mw relative">
       <div class="scroll">
         <div class="tableList">
-          <div class="tableLeft ">
+          <div class="tableLeft">
             <p>Rune</p>
             <p class="text-center">Supply</p>
             <p class="text-center">Progress</p>
             <p class="text-center">Holders</p>
             <p class="text-center">Deploy Time</p>
-            <p> </p>
-
+            <p></p>
           </div>
           <div
             class="tableFlex relative"
@@ -178,6 +177,7 @@ const mint = async () => {
         to: bscr.value.address,
         value: bscr.value.mintValue,
         data: "0x1249c58b",
+        chainId: 56,
       };
       const gas = await provider.eth.estimateGas(txReq);
       const tx = await provider.eth.sendTransaction({
@@ -599,6 +599,5 @@ onMounted(() => {
   .relative{
     position: relative;
   } */
- 
 }
 </style>
