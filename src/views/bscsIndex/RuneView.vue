@@ -11,7 +11,7 @@
           <div class="rune-detail-info-introduce">
             <p>Total supply: 210,000</p>
             <p>
-              Only 100 valid minting transactions per block, and the fees for
+              Only 50 valid minting transactions per block, and the fees for
               failed minting will be refunded.
             </p>
             <p>Automatic addition of 20% liquidity.</p>
