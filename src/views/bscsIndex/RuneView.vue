@@ -281,6 +281,12 @@ const syncInfos = async () => {
   const ethereum = (window as any).ethereum;
   if (!ethereum) return;
   const provider = new web3(ethereum);
+  const targetChainId = await provider.eth.getChainId();
+  if (targetChainId !== 56)
+    return ElMessage({
+      message: "Please switch to BSC network.",
+      type: "error",
+    });
   const bscrContract = new provider.eth.Contract(
     bscrABI as any,
     bscrTokenContract.value
@@ -352,6 +358,12 @@ const approve = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrContract = new provider.eth.Contract(
       bscrABI as any,
       bscrTokenContract.value
@@ -367,9 +379,11 @@ const approve = async () => {
       const gas = await bscrContract.methods
         .approve(...params)
         .estimateGas({ from: account });
-      const tx = await bscrContract.methods
-        .approve(...params)
-        .send({ from: account, gas: Math.floor(gas * 1.5), gasPrice: 3e9 });
+      const tx = await bscrContract.methods.approve(...params).send({
+        from: account,
+        gas: Math.floor(gas * 1.5),
+        gasPrice: 3e9,
+      });
       console.log(tx);
       ElMessage({
         message: `Approve transaction has been sent. ${tx.transactionHash}`,
@@ -402,6 +416,12 @@ const stake = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrStakeContract = new provider.eth.Contract(
       bscrStakeABI as any,
       bscrPoolInfo.value.pledgeContract
@@ -416,7 +436,11 @@ const stake = async () => {
         .estimateGas({ from: account });
       const tx = await bscrStakeContract.methods
         .stake(web3.utils.toWei(mineBscrInfo.value.balance, "ether"))
-        .send({ from: account, gas: Math.floor(gas * 1.5), gasPrice: 3e9 });
+        .send({
+          from: account,
+          gas: Math.floor(gas * 1.5),
+          gasPrice: 3e9,
+        });
       console.log(tx);
       ElMessage({
         message: `Stake transaction has been sent. ${tx.transactionHash}`,
@@ -449,6 +473,12 @@ const claim = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrStakeContract = new provider.eth.Contract(
       bscrStakeABI as any,
       bscrPoolInfo.value.pledgeContract
@@ -461,9 +491,11 @@ const claim = async () => {
       const gas = await bscrStakeContract.methods
         .claim(...params)
         .estimateGas({ from: account });
-      const tx = await bscrStakeContract.methods
-        .claim(...params)
-        .send({ from: account, gas: Math.floor(gas * 1.5), gasPrice: 3e9 });
+      const tx = await bscrStakeContract.methods.claim(...params).send({
+        from: account,
+        gas: Math.floor(gas * 1.5),
+        gasPrice: 3e9,
+      });
       console.log(tx);
       ElMessage({
         message: `Claim transaction has been sent. ${tx.transactionHash}`,
@@ -496,6 +528,12 @@ const redeem = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrStakeContract = new provider.eth.Contract(
       bscrStakeABI as any,
       bscrPoolInfo.value.pledgeContract
@@ -508,9 +546,11 @@ const redeem = async () => {
       const gas = await bscrStakeContract.methods
         .redeem(...params)
         .estimateGas({ from: account });
-      const tx = await bscrStakeContract.methods
-        .redeem(...params)
-        .send({ from: account, gas: Math.floor(gas * 1.5), gasPrice: 3e9 });
+      const tx = await bscrStakeContract.methods.redeem(...params).send({
+        from: account,
+        gas: Math.floor(gas * 1.5),
+        gasPrice: 3e9,
+      });
       console.log(tx);
       ElMessage({
         message: `Redeem transaction has been sent. ${tx.transactionHash}`,

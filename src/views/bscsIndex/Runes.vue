@@ -135,6 +135,12 @@ const syncBscr = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) return;
     const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
     const bscrContract = new provider.eth.Contract(
       bscrABI as any,
       bscr.value.address
@@ -171,8 +177,15 @@ const mint = async () => {
       });
       return;
     }
+    const provider = new web3(ethereum);
+    const targetChainId = await provider.eth.getChainId();
+    if (targetChainId !== 56)
+      return ElMessage({
+        message: "Please switch to BSC network.",
+        type: "error",
+      });
+
     try {
-      const provider = new web3(ethereum);
       const txReq = {
         from: await provider.eth.getAccounts().then((res) => res[0]),
         to: bscr.value.address,
@@ -591,7 +604,7 @@ onMounted(() => {
   }
   .phone-fixed-btn{
 
-    background: rgb(29,37,31);
+    background: rgb(28,30,36);
     height: 55px;
     border-radius: 6px;
 
